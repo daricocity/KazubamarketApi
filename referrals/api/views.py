@@ -5,9 +5,8 @@ from wallets.models import Wallet
 from datetime import timedelta, date
 from referrals.models import Referral, Link
 from .serializers import ReferralSerializer
-from KazubamarketApi.permissions import IsActivatedUser
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from rest_framework.generics import ListAPIView, RetrieveAPIView, UpdateAPIView
+from rest_framework.generics import ListAPIView
+from KazubamarketApi.permissions import IsActivatedUser, UserIsOwnerOrReadOnly
 
 ########## REFERRAL DETAIK API VIEW ##########    
 class ReferralAPIView(ListAPIView):
@@ -16,7 +15,7 @@ class ReferralAPIView(ListAPIView):
     """
     allowed_methods = ('GET', 'OPTIONS', 'HEAD')
     serializer_class = ReferralSerializer
-    permission_classes = [IsActivatedUser]
+    permission_classes = [UserIsOwnerOrReadOnly, IsActivatedUser]
 
     def get_queryset(self):
         pk = self.kwargs.get('pk')

@@ -8,14 +8,14 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import generics, permissions, status, views
 from KazubamarketApi.permissions import UserIsOwnerOrReadOnly, IsSubscribedUser
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, DestroyAPIView
 from .serializers import ProductSerializer, ProductListSerializer, ProductDetailUpdateSerializer, ProductUserListSerializer
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, UpdateAPIView, DestroyAPIView
 
 ########## User Detail Delete API View ########## 
 class ProductDeleteAPIView(DestroyAPIView):
     """
     Endpoint for Product Delete.
-    Only a suscribed user has access.
+    Only a subscribed user has access.
     """
     allowed_methods = ('DELETE', 'OPTIONS', 'HEAD')
     serializer_class = ProductDetailUpdateSerializer
