@@ -15,7 +15,7 @@ class ReferralAPIView(ListAPIView):
     """
     allowed_methods = ('GET', 'OPTIONS', 'HEAD')
     serializer_class = ReferralSerializer
-    permission_classes = [UserIsOwnerOrReadOnly, IsActivatedUser]
+    permission_classes = [IsActivatedUser]
 
     def get_queryset(self):
         pk = self.kwargs.get('pk')
