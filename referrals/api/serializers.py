@@ -19,7 +19,7 @@ class ReferralSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Referral
-        fields = ['downline_name', 'referral_id', 'date_activated', 'package']
+        fields = ['id', 'downline_name', 'referral_id', 'date_activated', 'package']
 
     def get_referral_id(self, obj):
         return Link.objects.get(user = obj.user).referral_id

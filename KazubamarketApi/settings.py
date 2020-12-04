@@ -94,6 +94,12 @@ SIMPLE_JWT = {
     'USER_ID_CLAIM': 'user_id',
     'USER_USERNAME_FIELD': 'username',
     'USER_USERNAME_CLAIM': 'username',
+    'USER_ADMIN_FIELD': 'admin',
+    'USER_ADMIN_CLAIM': 'user_admin',
+    'USER_SUBSCRIBE_FIELD': 'is_subscribe',
+    'USER_SUBSCRIBE_CLAIM': 'user_is_subscribe',
+    'USER_ACTIVATION_FIELD': 'has_paid_activation',
+    'USER_ACTIVATION_CLAIM': 'user_has_paid_activation',
 
     'AUTH_TOKEN_CLASSES': ('accounts.api.jwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
@@ -192,7 +198,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

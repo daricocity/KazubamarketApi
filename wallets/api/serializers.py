@@ -13,10 +13,14 @@ class TransactionSerializer(serializers.ModelSerializer):
 
 ########## WALLET SERIALIZER ##########
 class WalletSerializer(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField()
 
     class Meta:
         model = Wallet
-        fields = ['user']
+        fields = ['id', 'user', 'username', 'current_balance', 'weekly_earn_bonus', 'weekly_earn_bonus_so_far']
+
+    def get_username(self, obj):
+        return obj.user.username
 
 ########## MONTHLY SUBSCRIPTON SERIALIZER ##########
 class SubcriptionSerializer(serializers.ModelSerializer):
@@ -47,7 +51,7 @@ class SubcriptionSerializer(serializers.ModelSerializer):
                         user_product.active = True
                         user_product.save()
             except:
-                raise serializers.ValidationError({'amount': 'Insufficient Balance in wallets'})
+                raise serializers.ValidationError({'amount': 'Insufficient Balance in wallet'})
 
     def get_object(self):
         user = self.context['request'].user
@@ -90,7 +94,7 @@ class ActivationSerializer(serializers.ModelSerializer):
             user_ref.save()
             user.save()
         except:
-            raise serializers.ValidationError({'amount': 'Insufficient Balance in wallets'})
+            raise serializers.ValidationError({'amount': 'Insufficient Balance in wallet'})
 
     def get_object(self):
         user = self.context['request'].user

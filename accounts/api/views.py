@@ -57,7 +57,7 @@ class UserListAPIView(ListAPIView):
     """
     queryset = User.objects.all()
     serializer_class = UserListSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAuthenticated]
     allowed_methods = ('GET', 'OPTIONS', 'HEAD')
 
 ########## User Detail Update API View ########## 

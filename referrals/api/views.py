@@ -30,6 +30,7 @@ class ReferralAPIView(ListAPIView):
         monday_of_this_week = monday_of_last_week + timedelta(days=7)
         
         sub_amount = int(self.request.user.referral.package)
+
         ########## Percentage Earn ##########
         if sub_amount == 20:
             first_percentage = 0.2     # 20%
@@ -53,6 +54,7 @@ class ReferralAPIView(ListAPIView):
         first_generation_20_pack_count = first_generation.filter(package = 20).count()
         first_generation_50_pack_count = first_generation.filter(package = 50).count()
         first_generation_100_pack_count = first_generation.filter(package = 100).count()
+
 
         first_gen_20_total_earn = 20 * first_percentage * first_generation_20_pack_count
         first_gen_50_total_earn = 50 * first_percentage * first_generation_50_pack_count
@@ -257,9 +259,6 @@ class ReferralAPIView(ListAPIView):
             response = seventh_generation
         elif query_view == 8:
             response = eigth_generation
-
-        for i in second_generation:
-            print('This is sponsor: ', i.get_parent())
 
         return response
 

@@ -42,9 +42,14 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
 ########## User List Serializer ##########
 class UserListSerializer(serializers.ModelSerializer):
+    has_paid_activation = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'full_name', 'phone_number', 'occupation', 'address' ]
+        fields = ['id', 'username', 'email', 'full_name', 'phone_number', 'occupation', 'bank_account_name','bank_account_number','bank_name', 'address', 'admin', 'is_subscribe', 'has_paid_activation']
+
+    def get_has_paid_activation(self, obj):
+        return obj.referral.has_paid_activation
 
 ########## User Registration Serializer ##########
 class LinkSerializer(serializers.ModelSerializer):

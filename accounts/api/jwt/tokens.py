@@ -163,10 +163,16 @@ class Token:
             user_id = str(user_id)
 
         username = getattr(user, api_settings.USER_USERNAME_FIELD)
+        admin = getattr(user, api_settings.USER_ADMIN_FIELD)
+        is_subscribe = getattr(user, api_settings.USER_SUBSCRIBE_FIELD)
+        has_paid_activation = getattr(user.referral, api_settings.USER_ACTIVATION_FIELD)
 
         token = cls()
         token[api_settings.USER_ID_CLAIM] = user_id
         token[api_settings.USER_USERNAME_CLAIM] = username
+        token[api_settings.USER_ADMIN_FIELD] = admin
+        token[api_settings.USER_SUBSCRIBE_FIELD] = is_subscribe
+        token[api_settings.USER_ACTIVATION_FIELD] = has_paid_activation
 
         return token
 

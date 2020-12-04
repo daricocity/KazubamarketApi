@@ -54,6 +54,33 @@ class ProductUserListSerializer(serializers.ModelSerializer):
 
     def get_images(self, obj):
         return [product_image.image.url for product_image in obj.productimage_set.all()]
+
+# ########## PRODUCT SERIALIZER ##########
+# class CategoryFilteredPrimaryKeyRelatedField(serializers.PrimaryKeyRelatedField):
+
+#     def get_queryset(self):
+#         request = self.context.get('request', None)
+#         queryset = super(CategoryFilteredPrimaryKeyRelatedField, self).get_queryset()
+#         if not request or not queryset:
+#             return None
+#         return queryset.filter(user=request.user)
+
+# class ProductSerializer(serializers.ModelSerializer):
+#     user = serializers.HiddenField(default=serializers.CurrentUserDefault(), read_only = False)
+#     slug = serializers.SerializerMethodField(read_only=True)
+#     category = CategoryFilteredPrimaryKeyRelatedField(queryset=Category.objects, many=False)
+#     stock_status = serializers.ChoiceField(choices=STOCK_STATUS)
+
+#     class Meta:
+#         model = Product
+#         fields = ['user', 'title', 'slug', 'description', 'regular_price', 'category', 'stock_status', 'quantity_stocked', 'delivery_location']
+
+#     def get_slug(self, instance):
+#         return slugify(instance.title)
+        
+#     def get_user(self, obj):
+#         return obj.request.user
+        
    
 ########## PRODUCT SERIALIZER ##########
 class CategoryFilteredPrimaryKeyRelatedField(serializers.PrimaryKeyRelatedField):

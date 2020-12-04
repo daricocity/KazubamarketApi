@@ -1,8 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from wallets.models import Wallet, Transaction
-from KazubamarketApi.permissions import IsAdminUser
 from rest_framework.permissions import IsAuthenticated
+from KazubamarketApi.permissions import UserIsOwnerOrReadOnly, IsAdminUser
 from rest_framework import status, mixins, permissions, generics, views
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, UpdateAPIView, DestroyAPIView
 from .serializers import WalletSerializer, TransferSerializer, ActivationSerializer, SubcriptionSerializer, TransactionSerializer
@@ -97,6 +97,21 @@ class FundTransferAPIView(CreateAPIView):
     def perform_create(self, serializer):
         serializer.validated_data['user'] = self.request.user
         return super(FundTransferAPIView, self).perform_create(serializer)
+
+########## Product User List API View ##########    
+class WalletUserAPIView(ListAPIView):
+    """
+    Endpoint for User Product List.
+    Only a suscribed user has access.
+    """
+    allowed_methods = ('GET', 'OPTIONS', 'HEAD')
+    serializer_class = WalletSerializer
+    permission_classes = [IsAuthenticated, UserIsOwnerOrReadOnly,]
+    
+    def get_queryset(self):
+        user = self.request.user
+        qs = Wallet.objects.filter(user=user)
+        return qs
 
 ########## WALLET LIST API VIEW ##########    
 class WalletListAPIView(ListAPIView):
