@@ -16,10 +16,11 @@ class ReferralSerializer(serializers.ModelSerializer):
     downline_name = serializers.SerializerMethodField()
     referral_id = serializers.SerializerMethodField()
     date_activated = serializers.SerializerMethodField()
+    referal_parent = serializers.SerializerMethodField()
 
     class Meta:
         model = Referral
-        fields = ['id', 'downline_name', 'referral_id', 'date_activated', 'package']
+        fields = ['id', 'downline_name', 'referral_id', 'date_activated', 'package', 'referal_parent']
 
     def get_referral_id(self, obj):
         return Link.objects.get(user = obj.user).referral_id
@@ -29,4 +30,12 @@ class ReferralSerializer(serializers.ModelSerializer):
     
     def get_date_activated(self, obj):
         return obj.activated_on
+
+    def get_referal_parent(self, obj):
+        return obj.activated_on
+        # return obj.get_referral_ids()
+
+    def get_object(self):
+        user = self.context['request'].user
+        return user
         

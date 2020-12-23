@@ -117,7 +117,7 @@ class WalletFilteredPrimaryKeyRelatedField(serializers.PrimaryKeyRelatedField):
         return queryset
 
 class TransferSerializer(serializers.ModelSerializer):
-    wallet = WalletFilteredPrimaryKeyRelatedField(queryset=Wallet.objects.all(), many=False)
+    wallet = WalletFilteredPrimaryKeyRelatedField(queryset = Wallet.objects.all(), many = False)
     amount = serializers.CharField()
     reason = serializers.CharField()
 

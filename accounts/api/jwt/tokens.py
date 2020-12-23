@@ -166,6 +166,7 @@ class Token:
         admin = getattr(user, api_settings.USER_ADMIN_FIELD)
         is_subscribe = getattr(user, api_settings.USER_SUBSCRIBE_FIELD)
         has_paid_activation = getattr(user.referral, api_settings.USER_ACTIVATION_FIELD)
+        package = getattr(user.referral, api_settings.USER_PACKAGE_FIELD)
 
         token = cls()
         token[api_settings.USER_ID_CLAIM] = user_id
@@ -173,6 +174,7 @@ class Token:
         token[api_settings.USER_ADMIN_FIELD] = admin
         token[api_settings.USER_SUBSCRIBE_FIELD] = is_subscribe
         token[api_settings.USER_ACTIVATION_FIELD] = has_paid_activation
+        token[api_settings.USER_PACKAGE_FIELD] = package
 
         return token
 

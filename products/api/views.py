@@ -33,7 +33,7 @@ class ProductDeleteAPIView(DestroyAPIView):
 class ProductDetailUpdateAPIView(RetrieveUpdateAPIView):
     """
     Endpoint for Product Detail Update.
-    Only a suscribed user has access.
+    Only a subscribed user has access.
     """
     allowed_methods = ('PUT', 'OPTIONS', 'HEAD')
     serializer_class = ProductDetailUpdateSerializer
@@ -80,7 +80,7 @@ class ProductListAPIView(ListAPIView):
 class ProductUserDetailAPIView(RetrieveAPIView):
     """
     Endpoint for User Product Detail.
-    Only a suscribed user has access.
+    Only a subscribed user has access.
     """
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
@@ -101,7 +101,7 @@ class ProductUserDetailAPIView(RetrieveAPIView):
 class ProductUserListAPIView(ListAPIView):
     """
     Endpoint for User Product List.
-    Only a suscribed user has access.
+    Only a subscribed user has access.
     """
     allowed_methods = ('GET', 'OPTIONS', 'HEAD')
     serializer_class = ProductUserListSerializer
@@ -116,7 +116,7 @@ class ProductUserListAPIView(ListAPIView):
 class ProductCreateAPIView(CreateAPIView):
     """
     Endpoint for Product Create.
-    Only a suscribed user has access.
+    Only a subscribed user has access.
     """
     serializer_class = ProductSerializer
     allowed_methods = ('POST', 'OPTIONS', 'HEAD')

@@ -60,8 +60,8 @@ class Referral(MP_Node):
     def __str__(self):
         return self.user.username
     
-    def get_referral_id(self):
-        user_in = Link.objects.get(user = self.user)
+    def get_referral_ids(self):
+        user_in = Link.objects.get(user = self.user).referral_id
         return user_in
     
     def get_absolute_user_referral_url(self):

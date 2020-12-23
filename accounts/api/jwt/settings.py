@@ -32,6 +32,8 @@ DEFAULTS = {
     'USER_SUBSCRIBE_CLAIM': 'user_is_subscribe',
     'USER_ACTIVATION_FIELD': 'has_paid_activation',
     'USER_ACTIVATION_CLAIM': 'user_has_paid_activation',
+    'USER_PACKAGE_FIELD': 'package',
+    'USER_PACKAGE_CLAIM': 'user_package',
 
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
