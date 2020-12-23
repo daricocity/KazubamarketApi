@@ -12,6 +12,7 @@ from KazubamarketApi.permissions import IsActivatedUser, UserIsOwnerOrReadOnly
 class ReferralAPIView(ListAPIView):
     """
     Endpoint for Referral Detail, viewed by Activated.
+    Only an Activated user has access.
     """
     allowed_methods = ('GET', 'OPTIONS', 'HEAD')
     serializer_class = ReferralSerializer
