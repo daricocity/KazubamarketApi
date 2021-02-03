@@ -26,6 +26,7 @@ schema_view = get_swagger_view(title = 'Kazubamarket API',)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/docs/', schema_view),
+    path('api/order/', include("orders.api.urls", namespace = 'order_api')),
     path('api/wallet/', include("wallets.api.urls", namespace = 'wallet_api')),
     path('api/account/', include("accounts.api.urls", namespace = 'account_api')),
     path('api/product/', include("products.api.urls", namespace = 'product_api')),
